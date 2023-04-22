@@ -78,3 +78,6 @@ Simple shell 0.4 +
 Implement the env built-in, that prints the current environment
 file name
 
+## Authors:
+### Edwin Aikins: [@arkoaikins](https://github.com/arkoaikins)
+### Gideon Selorm Attakpah: [@iamgideonchrist](https://github.com/iamgideonchrist)
