@@ -14,18 +14,17 @@
 #include <errno.h>
 #include <stdio.h>
 
-/**
- *  The environ
- *  The name.
- *  counts history.
- */
+
+/* the environ */
 extern char **environ;
+/* name of program */
 char *name;
+/* counts history*/
 int hist;
 
 /**
  * struct list_s - struct that defineslinked list.
- * @dir: the path of the directory.
+ * @dir: dir path.
  * @next: points to other struct list_s.
  */
 typedef struct list_s
@@ -35,9 +34,9 @@ typedef struct list_s
 } list_t;
 
 /**
- * struct builtin_s - struct that defines added commands.
- * @name: name of the added commands.
- * @f: points to the builtin commands.
+ * struct builtin_s - struct that  defines builtin comm.
+ * @name: name of the embedded comm.
+ * @f: points to the embeded comm function.
  */
 typedef struct builtin_s
 {
@@ -46,9 +45,9 @@ typedef struct builtin_s
 } builtin_t;
 
 /**
- * struct alias_s - struct that defines aliases.
- * @name: name given to  alias.
- * @value: value given to alias.
+ * struct alias_s - struct that defines the aliases.
+ * @name: the alias name.
+ * @value: the alias value.
  * @next: points to other struct alias_s.
  */
 typedef struct alias_s
@@ -58,16 +57,10 @@ typedef struct alias_s
 	struct alias_s *next;
 } alias_t;
 
-/**
- *  aliases for the linked list(global)
- *  They help the main
- *  They help the input
- *  Functions of the sting used
- *   
- */
-
+/* aliases of the linked list */
 alias_t *aliases;
 
+/* It heples the main */
 ssize_t line_gets(char **linepnt, size_t *n, FILE *strm);
 void *re_alloc(void *pnt, unsigned int size1, unsigned int size2);
 char **strtoken(char *line, char *dlim);
@@ -77,6 +70,7 @@ int perform(char **agt, char **top);
 void _releasing(list_t *head);
 char *_attol(int num);
 
+/* For the input wa_wa */
 void handle_line(char **line, ssize_t read);
 void _replacer(char **agt, int *impret);
 char *get_agt(char *line, int *impret);
@@ -88,6 +82,7 @@ void free_agt(char **agt, char **top);
 int prog_commd(char *file_path, int *impret);
 char **change_aliases(char **agt);
 
+/* the strings */
 int _strlen(const char *s);
 char *_strcat(char *dest, const char *src);
 char *_strncat(char *dest, const char *src, size_t n);
@@ -97,13 +92,7 @@ int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 
-/**
- *  Builtins
- *  Builtin Helpers
- *  Error Handling
- *  Linkedlist Helpers
- */
-
+/* The embeddeds */
 int (*get_builtin(char *cmd))(char **agt, char **top);
 int by_exit(char **agt, char **top);
 int by_env(char **agt, char __attribute__((__unused__)) **top);
@@ -113,10 +102,12 @@ int by_cd(char **agt, char __attribute__((__unused__)) **top);
 int by_alias(char **agt, char __attribute__((__unused__)) **top);
 int by_help(char **agt, char __attribute__((__unused__)) **top);
 
+/* To help with the embeded */
 char **env_copy(void);
 void free_env(void);
 char **env_get(const char *var);
 
+/* This will handle errors */
 int do_error(char **agt, int err);
 char *environ_error(char **agt);
 char *error_1(char **agt);
@@ -126,6 +117,7 @@ char *error_2_syntax(char **agt);
 char *error_126(char **agt);
 char *error_127(char **agt);
 
+/* The helper for linked lists */
 alias_t *alias_adder(alias_t **head, char *name, char *value);
 void release_alias_l(alias_t *head);
 list_t *node_adder(list_t **head, char *dir);
